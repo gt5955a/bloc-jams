@@ -28,6 +28,20 @@ var albumMarconi = {
     ]
 };
 
+var albumThree = {
+    title: 'The Wolfdog',
+    artist: 'Artiste',
+    label: 'Test',
+    year: '1920',
+    albumArtUrl: 'assets/images/album_covers/13.png',
+    songs: [
+        { title: 'North', duration: '3:23' },
+        { title: 'East', duration: '1:23' },
+        { title: 'South', duration: '5:34' },
+        { title: 'West', duration: '4:12' }
+    ]
+};
+
 var createSongRow = function(songNumber, songName, songLength) {
     var template =
         '<tr class="album-view-song-item">'
@@ -40,13 +54,13 @@ var createSongRow = function(songNumber, songName, songLength) {
     return template;
 };
 
+var albumTitle = document.getElementsByClassName('album-view-title')[0];
+var albumArtist = document.getElementsByClassName('album-view-artist')[0];
+var albumReleaseInfo = document.getElementsByClassName('album-view-release-info')[0];
+var albumImage = document.getElementsByClassName('album-cover-art')[0];
+var albumSongList = document.getElementsByClassName('album-view-song-list')[0];
+
 var setCurrentAlbum = function(album) {
-    var albumTitle = document.getElementsByClassName('album-view-title')[0];
-    var albumArtist = document.getElementsByClassName('album-view-artist')[0];
-    var albumReleaseInfo = document.getElementsByClassName('album-view-release-info')[0];
-    var albumImage = document.getElementsByClassName('album-cover-art')[0];
-    var albumSongList = document.getElementsByClassName('album-view-song-list')[0];
- 
     albumTitle.firstChild.nodeValue = album.title;
     albumArtist.firstChild.nodeValue = album.artist;
     albumReleaseInfo.firstChild.nodeValue = album.year + ' ' + album.label;
@@ -61,4 +75,15 @@ var setCurrentAlbum = function(album) {
  
  window.onload = function() {
      setCurrentAlbum(albumPicasso);
+     
+     var albums = [albumPicasso, albumMarconi, albumThree];
+     var index = 1;
+     
+     albumImage.addEventListener("click", function(event) {
+         setCurrentAlbum(albums[index]);
+         index++;
+         if (index == albums.length) {
+             index = 0;
+         }
+     });
  };
