@@ -4,6 +4,7 @@ body.album {
     background-attachment: fixed;
     background-position: center center;
     background-size: cover;
+    padding-bottom: 200px;
 }
 
 .album-cover-art {
@@ -64,7 +65,7 @@ body.album {
     text-align: center;
     font-size: 14px;
     background-color: white;
-    color: rbg(210, 40, 123);
+    color: rgb(210, 40, 123);
     border-radius: 50% 50%;
     display: inline-block;
     width: 28px;
