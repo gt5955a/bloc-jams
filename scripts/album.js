@@ -107,7 +107,7 @@ var nextSong = function() {
         currentSongIndex = 0;
     }
     
-    setSong(songNumber);
+    setSong(currentSongIndex + 1);
     
     $('.currently-playing .song-name').text(currentSongFromAlbum.title);
     $('.currently-playing .artist-name').text(currentAlbum.artist);
@@ -126,6 +126,7 @@ var previousSong = function() {
     var getLastSongNumber = function(index) {
         return index == (currentAlbum.songs.length - 1) ? 1 : index + 2;
     };
+    
     var currentSongIndex = trackIndex(currentAlbum, currentSongFromAlbum);
     currentSongIndex--;
     
@@ -133,7 +134,7 @@ var previousSong = function() {
         currentSongIndex = currentAlbum.songs.length - 1;
     }
     
-    setSong(songNumber);
+    setSong(currentSongIndex + 1);
     
     $('.currently-playing .song-name').text(currentSongFromAlbum.title);
     $('.currently-playing .artist-name').text(currentAlbum.artist);
