@@ -249,9 +249,7 @@ var previousSong = function() {
     $lastSongNumberCell.html(lastSongNumber);
 };
 
-var togglePlayFromPlayerBar = function() {
-    var currentlyPlayingCell = getSongNumberCell(currentlyPlayingSongNumber);
-    
+var togglePlayFromPlayerBar = function() {    
     if (currentSoundFile == null) {
         setSong(1);
         currentSoundFile.play();
@@ -293,5 +291,5 @@ $(document).ready(function() {
     setupSeekBars();
     $previousButton.click(previousSong);
     $nextButton.click(nextSong);
-    $togglePlayFromPlayerBar.click()
+    $togglePlayFromPlayerBar.click(togglePlayFromPlayerBar)
 });
