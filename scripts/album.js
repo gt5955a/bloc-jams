@@ -188,20 +188,6 @@ var updatePlayerBarSong = function() {
     setTotalTimeInPlayerBar(currentSongFromAlbum.duration);
 };
 
-var playButtonTemplate = '<a class="album-song-button"><span class="ion-play"></span></a>';
-var pauseButtonTemplate = '<a class="album-song-button"><span class="ion-pause"></span></a>';
-var playerBarPlayButton = '<span class="ion-play"></span>';
-var playerBarPauseButton = '<span class="ion-pause"></span>';
-
-var currentAlbum = null;
-var currentlyPlayingSongNumber = null;
-var currentSongFromAlbum = null;
-var currentSoundFile = null;
-var currentVolume = 80;
-
-var $previousButton = $('.main-controls .previous');
-var $nextButton = $('.main-controls .next');
-
 var nextSong = function() {
     var getLastSongNumber = function(index) {
         return index == 0 ? currentAlbum.songs.length : index;
