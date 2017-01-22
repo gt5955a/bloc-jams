@@ -121,14 +121,14 @@ var setCurrentAlbum = function(album) {
 };
 
 var updateSeekBarWhileSongPlays = function() {
+    var seekBarFillRatio = this.getTime() / this.getDuration();
     if (currentSoundFile) {
         currentSoundFile.bind('timeupdate', function(event) {
-            var seekBarFillRatio = this.getTime() / this.getDuration();
             var $seekBar = $('.seek-control .seek-bar');
             updateSeekPercentage($seekBar, seekBarFillRatio);
         });
     }
-    setCurrentTimeInPlayerBar(seekBarFillRatio);
+    setCurrentTimeInPlayerBar(filterTimeCode(seekBarFillRatio));
 };
 
 var updateSeekPercentage = function($seekBar, seekBarFillRatio) {
@@ -185,7 +185,7 @@ var updatePlayerBarSong = function() {
     $('.currently-playing .artist-name').text(currentAlbum.artist);
     $('.currently-playing .artist-song-mobile').text(currentSongFromAlbum.title + " - " + currentAlbum.artist);
     $('.main-controls .play-pause').html(playerBarPauseButton);
-    setTotalTimeInPlayerBar(currentSongFromAlbum.duration);
+    setTotalTimeInPlayerBar(filterTimeCode(currentSongFromAlbum.duration));
 };
 
 var nextSong = function() {
@@ -239,15 +239,11 @@ var previousSong = function() {
 };
 
 var setCurrentTimeInPlayerBar = function(currentTime) {
-    currentTime = filterTimeCode(currentTime);
-    var currentTime = $(".current-time");
-    currentTime.html(currentSoundFile.getTime()); 
+    var curTime = $(".current-time").html(currentSoundFile.getTime());
 };
 
 var setTotalTimeInPlayerBar = function(totalTime) {
-    totalTime = filterTimeCode(totalTime);
-    var totalTime = $(".total-time");
-    totalTime.html(currentSoundFile.getDuration());
+    var totTime = $(".total-time").html(currentSoundFile.getDuration());
 };
 
 var filterTimeCode = function(timeInSeconds) {
@@ -259,7 +255,6 @@ var filterTimeCode = function(timeInSeconds) {
     } else {
         time = minutes + ":" + seconds;
     }
-    console.log(time);
     return time;
 };
 
