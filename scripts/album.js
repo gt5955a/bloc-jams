@@ -106,7 +106,7 @@ var setCurrentAlbum = function(album) {
     $albumTitle.text(album.title);
     $albumArtist.text(album.artist);
     $albumReleaseInfo.text(album.year + '' + album.label);
-    $albumImage.attr('src', album.albumArtUrl);
+    // $albumImage.attr('src', album.albumArtUrl);
  
     $albumSongList.empty();
  
@@ -117,13 +117,11 @@ var setCurrentAlbum = function(album) {
 };
 
 var setCurrentTimeInPlayerBar = function(currentTime) {
-    var $currentTimeElement = $(".seek-control .current-time");
-    $currentTimeElement.html(currentTime);
+    $(".seek-control .current-time").html(currentTime);
 };
 
 var setTotalTimeInPlayerBar = function(totalTime) {
-    var $totalTimeElement = $(".seek-control .total-time");
-    $totalTimeElement.html(totalTime);
+    $(".seek-control .total-time").html(totalTime);
 };
 
 var filterTimeCode = function(timeInSeconds) {
@@ -272,6 +270,8 @@ var togglePlayFromPlayerBar = function() {
         $togglePlayFromPlayerBar.html(playerBarPauseButton);
         currentlyPlayingCell = getSongNumberCell(1);
         currentlyPlayingCell.html(pauseButtonTemplate);
+        updatePlayerBarSong();
+        updateSeekBarWhileSongPlays();
     } else {
         if (currentSoundFile.isPaused()) {
             currentSoundFile.play();
@@ -305,6 +305,7 @@ var $togglePlayFromPlayerBar = $('.main-controls .play-pause');
 $(document).ready(function() {
     setCurrentAlbum(albumPicasso);
     setupSeekBars();
+    
     $previousButton.click(previousSong);
     $nextButton.click(nextSong);
     $togglePlayFromPlayerBar.click(togglePlayFromPlayerBar)
